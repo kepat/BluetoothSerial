@@ -12,11 +12,11 @@ The purpose of this forked repository is to enable printing in more/any bluetoot
 
 * Zebra Printer
 
--
+---
 
 Below contains the original content of README.md file from the main author of the plugin.
 
--
+---
 
 # Bluetooth Serial Plugin for PhoneGap
 
