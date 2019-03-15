@@ -46,4 +46,10 @@
 #define HC02_CHAR_RX_UUID "49535343-8841-43F4-A8D4-ECBE34729BB3"
 #define HC02_ADV_UUID "18F0"
 
+// Zebra Printers
+// https://www.zebra.com/content/dam/zebra/software/en/application-notes/AppNote-BlueToothLE-v4.pdf
+#define ZPRINTER_SERVICE_UUID                       "38EB4A80-C570-11E3-9507-0002A5D5C51B" 
+#define ZPRINTER_CHAR_TX_UUID                       "38EB4A81-C570-11E3-9507-0002A5D5C51B"
+#define ZPRINTER_CHAR_RX_UUID                       "38EB4A82-C570-11E3-9507-0002A5D5C51B"
+
 #define RBL_BLE_FRAMEWORK_VER                    0x0200

@@ -1,3 +1,23 @@
+## Forked Repository
+
+This is a forked repository from [https://github.com/don/BluetoothSerial](https://github.com/don/BluetoothSerial).
+
+The purpose of this forked repository is to enable printing in more/any bluetooth devices for iOS.
+
+### Changes
+
+* Remove filtering of services for iOS, scan all the bluetooth in range.
+
+### Added Bluetooth Services
+
+* Zebra Printer
+
+-
+
+Below contains the original content of README.md file from the main author of the plugin.
+
+-
+
 # Bluetooth Serial Plugin for PhoneGap
 
 This plugin enables serial communication over Bluetooth. It was written for communicating between Android or iOS and an Arduino.
