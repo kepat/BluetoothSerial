@@ -180,11 +180,33 @@ CBUUID *writeCharacteristicUUID;
         return;
     }
 
-    if ((characteristic.properties & CBCharacteristicPropertyWrite) == CBCharacteristicPropertyWrite) {
-        [p writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+    // Set the initial bytes count
+    int count = 0;
+
+    // Set the total data length of the data to be sent
+    int dataLen = (int)data.length;
+
+    // Loop through the data
+    if (dataLen > 20) {
+        while(count < dataLen && dataLen-count > 20) {
+            // Send this batch of bytes first
+            if ((characteristic.properties & CBCharacteristicPropertyWrite) == CBCharacteristicPropertyWrite) {
+                [p writeValue:[data subdataWithRange:NSMakeRange(count, 20)] forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+            } else if ((characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) == CBCharacteristicPropertyWriteWithoutResponse) {
+                [p writeValue:[data subdataWithRange:NSMakeRange(count, 20)] forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
+            }
+            // Rest for few miliseconds
+            [NSThread sleepForTimeInterval:0.05];
+            // Increase the last byte counts
+            count += 20;
+        }
     }
-    else if ((characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) == CBCharacteristicPropertyWriteWithoutResponse) {
-        [p writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
+
+    // Write the last bytes
+    if ((characteristic.properties & CBCharacteristicPropertyWrite) == CBCharacteristicPropertyWrite) {
+        [p writeValue:[data subdataWithRange:NSMakeRange(count, dataLen - count)] forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+    } else if ((characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) == CBCharacteristicPropertyWriteWithoutResponse) {
+        [p writeValue:[data subdataWithRange:NSMakeRange(count, dataLen - count)] forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
     }
 }
 
