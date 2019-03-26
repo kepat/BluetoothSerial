@@ -185,20 +185,21 @@ CBUUID *writeCharacteristicUUID;
 
     // Set the total data length of the data to be sent
     int dataLen = (int)data.length;
+    NSUInteger maxLen = [p maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse];
 
     // Loop through the data
-    if (dataLen > 20) {
-        while(count < dataLen && dataLen-count > 20) {
+    if (dataLen > maxLen) {
+        while(count < dataLen && dataLen-count > maxLen) {
             // Send this batch of bytes first
             if ((characteristic.properties & CBCharacteristicPropertyWrite) == CBCharacteristicPropertyWrite) {
-                [p writeValue:[data subdataWithRange:NSMakeRange(count, 20)] forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
+                [p writeValue:[data subdataWithRange:NSMakeRange(count, maxLen)] forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
             } else if ((characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) == CBCharacteristicPropertyWriteWithoutResponse) {
-                [p writeValue:[data subdataWithRange:NSMakeRange(count, 20)] forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
+                [p writeValue:[data subdataWithRange:NSMakeRange(count, maxLen)] forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
             }
             // Rest for few miliseconds
-            [NSThread sleepForTimeInterval:0.05];
+            [NSThread sleepForTimeInterval:0.005];
             // Increase the last byte counts
-            count += 20;
+            count += maxLen;
         }
     }
 
