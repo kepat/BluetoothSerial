@@ -7,6 +7,7 @@ The purpose of this forked repository is to enable printing in more/any bluetoot
 ### Changes
 
 * Remove filtering of services for iOS, scan all the bluetooth in range.
+* Print in BLE devices by sending the max bytes batch by batch.
 
 ### Added Bluetooth Services
 

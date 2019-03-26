@@ -1,6 +1,17 @@
 = 0.x.x =
 Add hc02 Bluetooth BLE support #359
 
+= 0.5.0 =
+Do a proper release for this plugin.
+
+= 0.4.9 =
+Enabling BLE peripheral devices printing for iOS.
+By maximizing the bytes allowed to the BLE peripheral device.
+
+= 0.4.8 =
+Removed the limitations of filtering the iOS bluetooth.
+Added the zebra printer services.
+
 = 0.4.7 =
 Clear old data from buffer on new connection fixes #286
 Update package.json for Meteor #271 Thanks StephenClement
