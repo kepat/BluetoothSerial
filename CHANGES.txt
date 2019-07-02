@@ -1,6 +1,9 @@
 = 0.x.x =
 Add hc02 Bluetooth BLE support #359
 
+= 0.5.1 =
+Made the waiting time slower in order to resolve unfinished writing of data to the printer.
+
 = 0.5.0 =
 Do a proper release for this plugin.
 

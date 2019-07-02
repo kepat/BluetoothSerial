@@ -197,7 +197,8 @@ CBUUID *writeCharacteristicUUID;
                 [p writeValue:[data subdataWithRange:NSMakeRange(count, maxLen)] forCharacteristic:characteristic type:CBCharacteristicWriteWithoutResponse];
             }
             // Rest for few miliseconds
-            [NSThread sleepForTimeInterval:0.005];
+            // [NSThread sleepForTimeInterval:0.005]; -- Make it faster but might cut off the transaction
+            [NSThread sleepForTimeInterval:0.175];
             // Increase the last byte counts
             count += maxLen;
         }
